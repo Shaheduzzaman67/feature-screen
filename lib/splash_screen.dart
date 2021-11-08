@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_cube/flutter_cube.dart';
 
@@ -15,6 +17,8 @@ class _SplashScreenState extends State<SplashScreen>
   Animation rotationAnimation;
   Object jet;
   Object shark;
+
+  var isShow = true;
 
   double getRadiansFromDegree(double degree) {
     double unitRadian = 57.295779513;
@@ -41,6 +45,9 @@ class _SplashScreenState extends State<SplashScreen>
 
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 250));
+
+    animationController.forward();
+
     degOneTranslationAnimation = TweenSequence([
       TweenSequenceItem<double>(
           tween: Tween<double>(begin: 0.0, end: 1.2), weight: 75.0),
@@ -65,6 +72,14 @@ class _SplashScreenState extends State<SplashScreen>
     animationController.addListener(() {
       setState(() {});
     });
+
+    startTime();
+
+  }
+
+  startTime() async {
+    var _duration = new Duration(seconds: 1);
+    return new Timer(_duration, navigationPage);
   }
 
   @override
@@ -221,12 +236,30 @@ class _SplashScreenState extends State<SplashScreen>
                         ),*/
                       )
                 ],
-              ))
+              )),
+
+          Visibility(visible: isShow ,child: Container(color: Colors.white, width: size.width, height: size.height,))
         ],
       ),
     ));
   }
+
+  void navigationPage() {
+    isShow =false;
+
+    var _duration = new Duration(seconds: 2);
+
+    Timer(_duration, close);
+
+  }
+
+  close(){
+    animationController.reverse();
+  }
+
 }
+
+
 
 class CircularButton extends StatelessWidget {
   final double width;
