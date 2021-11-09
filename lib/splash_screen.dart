@@ -10,6 +10,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
+
   AnimationController animationController;
   Animation degOneTranslationAnimation,
       degTwoTranslationAnimation,
@@ -44,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
     shark.updateTransform();
 
     animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 250));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 1800));
 
     animationController.forward();
 
@@ -78,7 +79,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   startTime() async {
-    var _duration = new Duration(seconds: 1);
+    var _duration = new Duration(seconds: 3);
     return new Timer(_duration, navigationPage);
   }
 
@@ -247,7 +248,7 @@ class _SplashScreenState extends State<SplashScreen>
   void navigationPage() {
     isShow =false;
 
-    var _duration = new Duration(seconds: 2);
+    var _duration = new Duration(milliseconds: 500);
 
     Timer(_duration, close);
 
